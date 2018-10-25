@@ -4,9 +4,10 @@ CPLUSPLUS = g++
 FLEX = flex++
 #FLEX = flex-+
 BYACC = bison
+LDFLAGS    = -m32
 
 # choice of the options
-CFLAGS = -g -O2 -ggdb -DYYMAXDEPTH=25000    # options for g++
+CFLAGS = -g -O2 -m32 -ggdb -DYYMAXDEPTH=25000    # options for g++
 
 #must end with a slash
 PDDL_PARSER_DIR = bin/ 

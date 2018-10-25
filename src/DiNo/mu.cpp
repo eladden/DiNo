@@ -608,7 +608,7 @@ int compile_cpp()
     return 0;
   } else {
     printf("Compiling executable planner, please wait...\n"); // WP WP WP WP WP ADDED "-g" FOR DEBUGGING WHEN COMPILING THE MODEL EXECUTABLE
-    sprintf(commandline,"%s %s %s -g -I\"%s\" %s -o %s",QUOTED_VALUE(COMPILER_NAME),QUOTED_VALUE(COMPILER_DEFINES),get_cppfilename(),base_include_path,QUOTED_VALUE(COMPILER_SWITCHES),get_execfilename());
+    sprintf(commandline,"%s %s %s -g -m32 -I\"%s\" %s -o %s",QUOTED_VALUE(COMPILER_NAME),QUOTED_VALUE(COMPILER_DEFINES),get_cppfilename(),base_include_path,QUOTED_VALUE(COMPILER_SWITCHES),get_execfilename());
     int error = system(commandline);
     if (!error) {
       printf("Planner compilation successful, no errors\n");

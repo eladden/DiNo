@@ -20,7 +20,7 @@ SEARCHDIRS := -I${MYCODEDIR} -I${PARSER}
 
 # makemake variables
 
-DEPENDFLAGS := -g -Wall -Werror ${SEARCHDIRS}
+DEPENDFLAGS := -g -m32 -Wall -Werror ${SEARCHDIRS}
 
 # C preprocessor (C, C++, FORTRAN)
 
@@ -59,7 +59,7 @@ CXXFLAGS  = ${DEPENDFLAGS} -ansi -Wall
 # C/C++/Eiffel/FORTRAN linker
 
 LINKER    := g++ -g 
-LDFLAGS    = 
+LDFLAGS    = -m32
 LOADLIBES := 
 
 
