@@ -801,9 +801,15 @@ ste *designator::getbase(void) const
 
 stecoll *designator::used_stes() const
 {
-  stecoll *l = left ? left->used_stes() : new stecoll;
-  stecoll *o = origin ? new stecoll(origin) : new stecoll;
-  stecoll *a = arrayref ? arrayref->used_stes() : new stecoll;
+  stecoll *l = new stecoll;
+  if (left != NULL)
+      l= left->used_stes();
+  stecoll *o = new stecoll;
+  if (origin != NULL)
+      o = new stecoll(origin);
+  stecoll *a = new stecoll;
+  if (arrayref !=NULL)
+      a = arrayref->used_stes();
   // NOTE:  fieldref is ignored
 
   l->append(o);

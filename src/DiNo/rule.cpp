@@ -91,7 +91,9 @@ simplerule::CountSize(ste * enclosures)
 
 void simplerule::rearrange_enclosures()
 {
-  stecoll *us = condition ? condition->used_stes() : NULL;
+  stecoll *us = NULL;
+  if (condition != NULL)
+      us = condition->used_stes();
   ste *front = NULL;
   ste *end = NULL;
   ste *rest = NULL;

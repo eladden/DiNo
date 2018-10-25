@@ -171,8 +171,10 @@ class binaryexpr:public expr
 
   virtual stecoll *used_stes() const
   {
-    stecoll *l = left ? left->used_stes() : new stecoll;
-    stecoll *r = right ? right->used_stes() : new stecoll;
+    stecoll *l = new stecoll;
+    if (left != NULL)  l = left->used_stes();
+    stecoll *r = new stecoll;
+    if (right != NULL) r = right->used_stes();
 
     l->append(r);
 
