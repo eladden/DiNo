@@ -19,9 +19,9 @@
 ste::ste(lexid * name, int scope, decl * value)
   :name(name), scope(scope), value(value), next(NULL)
 {
-  if (value != NULL) {		/* IM: added condition on value, for external calls */
+  if (value!= nullptr) {		/* IM: added condition on value, for external calls */
     /* a weirdness--we tell an object its name when we declare it. */
-    if (name != NULL) {
+    if (name!= nullptr) {
       value->name = name->getname();	/* loses a previous name for value. */
       value->pddlattrs.pddlname = name->getpddlname();
     }
@@ -35,7 +35,7 @@ ste::ste(lexid * name, int scope, decl * value)
 ste *ste::search(lexid * name)
 {
   ste *s = this;
-  while (s != NULL && s->name != name)
+  while (s!= nullptr && s->name != name)
     s = s->next;
   return s;
 }
@@ -43,7 +43,7 @@ ste *ste::search(lexid * name)
 ste *ste::reverse()
 {
   ste *in = this, *out = NULL, *temp = NULL;
-  while (in != NULL) {
+  while (in!= nullptr) {
     temp = in;
     in = in->next;
     temp->next = out;
@@ -78,7 +78,7 @@ symboltable::symboltable()
 ste *symboltable::find(lexid * name) const
 {
   ste *p = topste();
-  while (p != NULL && p->name != name)
+  while (p!= nullptr && p->name != name)
     p = p->next;
   return (p);
 }
@@ -100,7 +100,7 @@ ste *symboltable::declare(lexid * name, decl * value)
   printf("Declaring %s in scope %d, depth %d\n",
          name->getname(), scopes[scopedepth], scopedepth);
 #endif
-  if (p != NULL && p->getscope() == curscope) {
+  if (p!= nullptr && p->getscope() == curscope) {
     Error.Error("%s already defined in current scope.", name->getname());
     return (p);
   }
@@ -121,7 +121,7 @@ ste *symboltable::declare_global(lexid * name, decl * value)
   printf("Declaring %s globally in scope %d, depth %d\n",
          name->getname(), scopes[globalscope], globalscope);
 #endif
-  if (p != NULL && p->getscope() == globalscope) {
+  if (p!= nullptr && p->getscope() == globalscope) {
     Error.Error("%s already defined in global scope.", name->getname());
     return (p);
   }
@@ -197,7 +197,7 @@ ste *symboltable::dupscope() const
 {
   ste *s = getscope();
   ste *beginning = NULL, **end = &beginning;
-  for (; s != NULL && s->scope == scopes[scopedepth]; s = s->next) {
+  for (; s!= nullptr && s->scope == scopes[scopedepth]; s = s->next) {
     *end = new ste(s->name, s->scope, s->value);
     end = &(*end)->next;
   }
